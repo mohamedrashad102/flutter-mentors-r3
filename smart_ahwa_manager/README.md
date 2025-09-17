@@ -37,11 +37,13 @@ A modern Flutter application for coffee shop order management with comprehensive
 
 <div align="center">
 
-<video src="../showcase/demo.mp4" controls width="800" height="600" type="video/mp4">
+<a href="../showcase/demo.mp4">
+  <img src="../showcase/1.png" alt="Smart Ahwa Manager Demo" width="800"/>
+</a>
 
-*🎬 Smart Ahwa Manager in action - showcasing order management and analytics*
+*🎬 Click the thumbnail above to view the Smart Ahwa Manager demo video*
 
-</video>
+**Note:** GitHub doesn't support direct video embedding. Click the image to download and view the video.
 
 </div>
 
