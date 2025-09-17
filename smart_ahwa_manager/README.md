@@ -10,22 +10,22 @@ A modern Flutter application for coffee shop order management with comprehensive
   <table>
     <tr>
       <td align="center">
-        <img src="showcase/1.png" alt="Dashboard Analytics" width="200"/>
+        <img src="../showcase/1.png" alt="Dashboard Analytics" width="200"/>
         <br>
         <em>Dashboard Analytics</em>
       </td>
       <td align="center">
-        <img src="showcase/2.png" alt="Coffee Selection" width="200"/>
+        <img src="../showcase/2.png" alt="Coffee Selection" width="200"/>
         <br>
         <em>Coffee Selection</em>
       </td>
       <td align="center">
-        <img src="showcase/3.png" alt="Order Notes" width="200"/>
+        <img src="../showcase/3.png" alt="Order Notes" width="200"/>
         <br>
         <em>Special Instructions</em>
       </td>
       <td align="center">
-        <img src="showcase/4.png" alt="Pending Orders" width="200"/>
+        <img src="../showcase/4.png" alt="Pending Orders" width="200"/>
         <br>
         <em>Order Tracking</em>
       </td>
@@ -37,9 +37,11 @@ A modern Flutter application for coffee shop order management with comprehensive
 
 <div align="center">
 
-![Demo Video](showcase/demo.mp4)
+<video src="../showcase/demo.mp4" controls width="800" height="600" type="video/mp4">
 
 *🎬 Smart Ahwa Manager in action - showcasing order management and analytics*
+
+</video>
 
 </div>
 
