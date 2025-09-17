@@ -18,7 +18,7 @@ class OrderMapper {
     return Order(
       id: map['id'],
       customerName: map['customerName'],
-      coffee: coffeeFactor.create(map['coffeeType']),
+      coffee: coffeeFactor.createFromString(map['coffeeType']),
       status: OrderStatus.values.firstWhere((e) => e.name == map['status']),
       createdAt: DateTime.parse(map['createdAt']),
       notes: map['notes'],

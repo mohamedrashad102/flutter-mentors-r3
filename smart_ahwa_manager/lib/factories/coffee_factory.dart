@@ -17,4 +17,9 @@ class CoffeeFactory {
       CoffeeType.americano => const Americano(),
     };
   }
+
+  Coffee createFromString(String type) {
+    final coffeeType = CoffeeType.values.firstWhere((e) => e.name == type);
+    return create(coffeeType);
+  }
 }

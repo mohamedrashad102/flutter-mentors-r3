@@ -25,6 +25,7 @@ class _AddOrderViewState extends ConsumerState<AddOrderView> {
   @override
   void dispose() {
     _customerNameController.dispose();
+    _notesController.dispose();
     super.dispose();
   }
 
@@ -61,6 +62,10 @@ class _AddOrderViewState extends ConsumerState<AddOrderView> {
 
       await ref.read(ordersProvider.notifier).addOrder(order);
 
+      _customerNameController.clear();
+      _notesController.clear();
+      _selectedCoffeeType = null;
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -71,7 +76,6 @@ class _AddOrderViewState extends ConsumerState<AddOrderView> {
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
         );
-        Navigator.pop(context);
       }
     } catch (error) {
       if (mounted) {
@@ -241,6 +245,36 @@ class _AddOrderViewState extends ConsumerState<AddOrderView> {
                   ),
                 ),
               ),
+              const SizedBox(height: 24),
+
+              // Notes Section (Optional)
+              Text(
+                'Additional Notes (Optional)',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: TextFormField(
+                    controller: _notesController,
+                    decoration: const InputDecoration(
+                      labelText: 'Special Instructions',
+                      hintText:
+                          'Add any special instructions or notes for this order...',
+                      prefixIcon: Icon(Icons.note_add),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                    ),
+                    maxLines: 3,
+                    textInputAction: TextInputAction.done,
+                    // No validator since notes are optional
+                  ),
+                ),
+              ),
               const SizedBox(height: 32),
 
               // Submit Button
@@ -280,7 +314,20 @@ class _AddOrderViewState extends ConsumerState<AddOrderView> {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                  onPressed: _isLoading ? null : () => Navigator.pop(context),
+                  onPressed: _isLoading
+                      ? null
+                      : () {
+                          _customerNameController.clear();
+                          _notesController.clear();
+                          _selectedCoffeeType = null;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Order cancelled'),
+                              behavior: SnackBarBehavior.floating,
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        },
                   child: const Text('Cancel'),
                 ),
               ),

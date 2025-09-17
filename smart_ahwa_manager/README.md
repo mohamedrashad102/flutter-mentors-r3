@@ -2,6 +2,50 @@
 
 A modern Flutter application for coffee shop order management with comprehensive business analytics and multi-platform support.
 
+## 📱 App Showcase
+
+### 📸 Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="showcase/1.png" alt="Dashboard Analytics" width="200"/>
+        <br>
+        <em>Dashboard Analytics</em>
+      </td>
+      <td align="center">
+        <img src="showcase/2.png" alt="Coffee Selection" width="200"/>
+        <br>
+        <em>Coffee Selection</em>
+      </td>
+      <td align="center">
+        <img src="showcase/3.png" alt="Order Notes" width="200"/>
+        <br>
+        <em>Special Instructions</em>
+      </td>
+      <td align="center">
+        <img src="showcase/4.png" alt="Pending Orders" width="200"/>
+        <br>
+        <em>Order Tracking</em>
+      </td>
+    </tr>
+  </table>
+</div>
+
+### 🎥 Demo Video
+
+<div align="center">
+  <video controls>
+    <source src="showcase/demo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <br><br>
+  <em>🎬 <a href="showcase/demo.mp4">Download Demo Video</a> to see Smart Ahwa Manager in action!</em>
+</div>
+
+---
+
 ## 📱 Overview
 
 Smart Ahwa Manager is a cross-platform coffee shop management application built with Flutter. It provides an intuitive interface for managing coffee orders, tracking customer preferences, and generating detailed business reports. The app supports both mobile and desktop platforms with local data persistence.
@@ -211,10 +255,6 @@ flutter format .
 # Check for outdated dependencies
 flutter pub outdated
 ```
-
-## 📱 Screenshots
-
-*Add your app screenshots here to showcase the UI*
 
 ## 🤝 Contributing
 

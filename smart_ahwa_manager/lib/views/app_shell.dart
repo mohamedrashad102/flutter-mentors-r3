@@ -5,7 +5,7 @@ import 'coffee_orders/add_order_view.dart';
 import 'coffee_orders/dashboard_view.dart';
 import 'coffee_orders/pending_orders_view.dart';
 
-final selectedIndexProvider = StateProvider<int>((ref) => 1);
+final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
 class AppShell extends ConsumerWidget {
   const AppShell({super.key});

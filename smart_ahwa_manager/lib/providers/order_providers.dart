@@ -2,19 +2,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_ahwa_manager/services/local_order_services.dart';
 import 'package:smart_ahwa_manager/services/memory_order_services.dart';
+
 import '../models/order.dart';
-import '../services/order_services.dart';
 import '../reports/orders_report.dart';
+import '../services/order_services.dart';
 
 // SharedPreferences provider
-final sharedPreferencesProvider = FutureProvider<SharedPreferences>((ref) async {
+final sharedPreferencesProvider = FutureProvider<SharedPreferences>((
+  ref,
+) async {
   return await SharedPreferences.getInstance();
 });
 
 // Order services provider
 final orderServicesProvider = Provider<OrderServices>((ref) {
   final sharedPreferencesAsync = ref.watch(sharedPreferencesProvider);
-  
+
+  sharedPreferencesAsync.whenData(
+    (sharedPreferences) => sharedPreferences.clear(),
+  );
   return sharedPreferencesAsync.when(
     data: (sharedPreferences) => LocalOrderServices(sharedPreferences),
     loading: () => MemoryOrderServices(), // Fallback to memory during loading
@@ -23,10 +29,11 @@ final orderServicesProvider = Provider<OrderServices>((ref) {
 });
 
 // Orders state provider
-final ordersProvider = StateNotifierProvider<OrdersNotifier, AsyncValue<List<Order>>>((ref) {
-  final orderServices = ref.watch(orderServicesProvider);
-  return OrdersNotifier(orderServices);
-});
+final ordersProvider =
+    StateNotifierProvider<OrdersNotifier, AsyncValue<List<Order>>>((ref) {
+      final orderServices = ref.watch(orderServicesProvider);
+      return OrdersNotifier(orderServices);
+    });
 
 // Pending orders provider
 final pendingOrdersProvider = Provider<AsyncValue<List<Order>>>((ref) {
@@ -54,7 +61,7 @@ final dashboardStatsProvider = Provider<AsyncValue<OrdersReport>>((ref) {
 final orderIdCounterProvider = StateProvider<int>((ref) {
   final ordersAsync = ref.watch(ordersProvider);
   return ordersAsync.when(
-    data: (orders) => orders.isNotEmpty 
+    data: (orders) => orders.isNotEmpty
         ? orders.map((order) => order.id).reduce((a, b) => a > b ? a : b) + 1
         : 1,
     loading: () => 1,
