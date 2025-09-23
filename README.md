@@ -36,7 +36,7 @@ lib/
 
 showcase/
 ├── advanced_animation_chain.mp4
-├── drag_drop.mp4
+├── interactive_physics_widget.mp4
 └── interactive_dismissible_lists.mp4
 ```
 
@@ -68,7 +68,9 @@ Use **Draggable** and **DragTarget** widgets to create a mini physics simulation
 *   `SnackBar`: To provide feedback to the user.
 
 **Demo:**
-🎥 [Watch Demo](./showcase/drag%20drop.mp4)
+https://github.com/user-attachments/assets/a90eb1b4-ccc2-4445-9328-19b129b267f7
+
+
 
 ---
 
@@ -86,7 +88,9 @@ Create an interactive list using **Dismissible** widgets where users can swipe t
 *   `SnackBar` with `SnackBarAction`: To provide an "Undo" option after dismissing an item.
 
 **Demo:**
-🎥 [Watch Demo](./showcase/interactive_dismissible_lists.mp4)
+https://github.com/user-attachments/assets/1fc9ec0b-8341-4120-9566-47ced7852b71
+
+
 
 ---
 
@@ -112,7 +116,9 @@ Create a loading animation sequence with **3 dots** that scale and fade in order
 *   `Transform.scale` & `Opacity`: To apply the scale and fade animations.
 
 **Demo:**
-🎥 [Watch Demo](./showcase/advanced_animation_chain.mp4)
+https://github.com/user-attachments/assets/5bc6617e-d643-4712-8beb-f722e490d6cc
+
+
 
 ---
 
