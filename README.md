@@ -128,10 +128,9 @@ To run this project locally, follow these steps:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/FlutterMentorsR3.git
+    git clone https://github.com/mohamedrashad102/FlutterMentorsR3.git
     cd FlutterMentorsR3
     ```
-    *(Replace `your-username` with the actual repository URL)*
 
 2.  **Install dependencies:**
     ```bash
