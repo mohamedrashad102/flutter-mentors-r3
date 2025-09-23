@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_exploration/Advanced%20Animation%20Chain/widgets/loading_dots.dart';
+import 'package:flutter_widget_exploration/advanced_animation_chain/widgets/loading_dots.dart';
 
 class LoadingDotsView extends StatelessWidget {
   const LoadingDotsView({super.key});

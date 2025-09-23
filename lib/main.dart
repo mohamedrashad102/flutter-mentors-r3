@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_widget_exploration/Advanced%20Animation%20Chain/views/loading_dots_view.dart';
+import 'package:flutter_widget_exploration/advanced_animation_chain/views/loading_dots_view.dart';
 
 import 'interactive_dismissible_lists/views/tasks_view.dart';
 import 'interactive_physics_widget/views/drag_drop_view.dart';
