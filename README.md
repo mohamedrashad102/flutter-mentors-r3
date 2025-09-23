@@ -68,7 +68,9 @@ Use **Draggable** and **DragTarget** widgets to create a mini physics simulation
 *   `SnackBar`: To provide feedback to the user.
 
 **Demo:**
-<video src="showcase/interactive_physics_widget.mp4" controls></video>
+<video src="https://github.com/user-attachments/assets/b884a486-90f0-4da1-a0a6-5f8e0d7395cb.mp4" controls width="600">
+  Your browser does not support the video tag.
+</video>
 
 
 
@@ -88,7 +90,10 @@ Create an interactive list using **Dismissible** widgets where users can swipe t
 *   `SnackBar` with `SnackBarAction`: To provide an "Undo" option after dismissing an item.
 
 **Demo:**
-<video src="showcase/interactive_dismissible_lists.mp4" controls><video>
+<video src="https://github.com/user-attachments/assets/29f2f0a1-0e0f-490b-8cb5-e84848070ca4.mp4" controls width="600">
+  Your browser does not support the video tag.
+</video>
+
 
 
 
@@ -116,7 +121,10 @@ Create a loading animation sequence with **3 dots** that scale and fade in order
 *   `Transform.scale` & `Opacity`: To apply the scale and fade animations.
 
 **Demo:**
-<video src="./showcase/advanced_animation_chain.mp4" controls></video>
+<video src="https://github.com/user-attachments/assets/4117d0d8-cb34-4f31-b44d-02a791e52d58.mp4" controls width="600">
+  Your browser does not support the video tag.
+</video>
+
 
 
 ---
