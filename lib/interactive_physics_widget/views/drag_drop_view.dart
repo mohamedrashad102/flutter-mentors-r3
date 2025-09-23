@@ -7,7 +7,10 @@ class DragDropView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Interactive Physics Widget")),
+      appBar: AppBar(
+        title: const Text("Interactive Physics Widget"),
+        centerTitle: true,
+      ),
       body: DragDropGame(),
     );
   }

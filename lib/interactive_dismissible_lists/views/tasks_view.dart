@@ -7,7 +7,10 @@ class TasksView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Interactive Dismissible Lists')),
+      appBar: AppBar(
+        title: const Text('Interactive Dismissible Lists'),
+        centerTitle: true,
+      ),
       body: Padding(padding: const EdgeInsets.all(8.0), child: TasksList()),
     );
   }
