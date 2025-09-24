@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/home/presentation/views/home_view.dart';
+import 'features/plan/presentation/views/plan_view.dart';
 
 class AnimeApp extends StatelessWidget {
   const AnimeApp({super.key});
@@ -10,7 +10,7 @@ class AnimeApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Raleway'),
-      home: const HomeView(),
+      home: const PlanView(),
     );
   }
 }
