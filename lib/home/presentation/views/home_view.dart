@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import '../../../utils/app_images.dart';
 import '../widgets/home_header.dart';
 import '../widgets/home_posters.dart';
 import '../widgets/home_taps.dart';
@@ -28,7 +29,7 @@ class HomeView extends StatelessWidget {
             Positioned(
               top: 0,
               right: -14,
-              child: Image.asset('assets/images/star1.png'),
+              child: Image.asset(AppImages.homeStar),
             ),
             const SafeArea(
               child: Column(

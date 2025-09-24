@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../providers/home_taps_provider.dart';
 
 class HomeTaps extends ConsumerWidget {
