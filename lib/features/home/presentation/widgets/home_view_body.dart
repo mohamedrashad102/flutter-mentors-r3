@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../utils/app_images.dart';
+import '../../../../core/utils/app_images.dart';
 import 'home_header.dart';
 import 'home_posters.dart';
 import 'home_taps.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../../core/utils/app_colors.dart';
 import '../providers/characters_provider.dart';
 
 class HomeTopCharacters extends StatelessWidget {

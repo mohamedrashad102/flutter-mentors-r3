@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home/presentation/views/home_view.dart';
+import 'features/home/presentation/views/home_view.dart';
 
 class AnimeApp extends StatelessWidget {
   const AnimeApp({super.key});
