@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../../../utils/app_colors.dart';
 import '../providers/posters_provider.dart';
 
 class HomePosters extends ConsumerWidget {
@@ -36,7 +37,7 @@ class HomePosters extends ConsumerWidget {
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: Color(0XFF18153F),
+                  color: AppColors.darkColor,
                 ),
               ),
               const Gap(4),

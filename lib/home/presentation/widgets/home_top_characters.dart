@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../../../utils/app_colors.dart';
 import '../providers/characters_provider.dart';
 
 class HomeTopCharacters extends StatelessWidget {
@@ -43,7 +44,7 @@ class HomeTopCharacters extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: Color(0XFF18153F),
+                          color: AppColors.darkColor,
                         ),
                       ),
                       const Gap(6),

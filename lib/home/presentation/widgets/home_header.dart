@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/app_colors.dart';
+
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
 
@@ -10,7 +12,7 @@ class HomeHeader extends StatelessWidget {
       style: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
-        color: Color(0xFF18153F),
+        color: AppColors.darkColor,
       ),
     );
   }

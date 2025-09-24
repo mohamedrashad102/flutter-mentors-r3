@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../utils/app_colors.dart';
 import '../providers/home_taps_provider.dart';
 
 class HomeTaps extends ConsumerWidget {
@@ -27,7 +28,7 @@ class HomeTaps extends ConsumerWidget {
                   ),
                   decoration: BoxDecoration(
                     color: currentTapIndex.isCurrentIndex(e.key)
-                        ? const Color(0xFF5436F8)
+                        ? AppColors.primaryColor
                         : Colors.white,
                     borderRadius: BorderRadius.circular(100),
                   ),
@@ -42,7 +43,7 @@ class HomeTaps extends ConsumerWidget {
                       fontWeight: FontWeight.bold,
                       color: currentTapIndex.isCurrentIndex(e.key)
                           ? Colors.white
-                          : const Color(0XFF5436F8),
+                          : AppColors.primaryColor,
                     ),
                   ),
                 ),
