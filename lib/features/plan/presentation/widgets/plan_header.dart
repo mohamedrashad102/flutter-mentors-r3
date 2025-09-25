@@ -21,14 +21,19 @@ class PlanHeader extends StatelessWidget {
           ),
           Positioned(
             right: 32 - 14,
-            child: Container(
-              width: 32,
-              height: 32,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: 32,
+                height: 32,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: const Icon(Icons.close),
               ),
-              child: const Icon(Icons.close),
             ),
           ),
         ],
