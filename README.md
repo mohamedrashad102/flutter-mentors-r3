@@ -4,7 +4,13 @@ A sleek and engaging Flutter application for browsing and discovering new anime.
 
 ##  Demo
 
-|                 Home Screen                  |                 Details Screen                  |             Upgrade Plan Screen              |
+
+<video src="https://github.com/user-attachments/assets/f29a6964-470d-4e3a-9b4c-d9687c0e89a7.mp4" controls width="600">
+  Your browser does not support the video tag.
+</video>
+
+
+|                 Home Screen                  |                 Details Screen                  |             Upgrade Screen              |
 | :------------------------------------------: | :---------------------------------------------: | :------------------------------------------: |
 | <img src="./showcase/home.png" width="250"/> | <img src="./showcase/details.png" width="250"/> | <img src="./showcase/plan.png" width="250"/> |
 
