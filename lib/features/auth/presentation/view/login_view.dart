@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../core/extensions/theme_extension.dart';
 import '../../../../core/services/services_locator.dart';
+import '../../../../core/utils/app_colors.dart';
 import '../cubit/auth_cubit.dart';
 
 class LoginView extends StatelessWidget {
@@ -24,29 +23,24 @@ class _LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Login'), centerTitle: true),
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
             // Navigate to home screen on success
             // context.go('/home');
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Login Successful!')),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('Login Successful!')));
           } else if (state is AuthFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
         child: const Padding(
           padding: EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: _LoginForm(),
-          ),
+          child: SingleChildScrollView(child: _LoginForm()),
         ),
       ),
     );
@@ -75,9 +69,9 @@ class _LoginFormState extends State<_LoginForm> {
   void _submit() {
     if (_formKey.currentState!.validate()) {
       context.read<AuthCubit>().login(
-            email: _emailController.text,
-            password: _passwordController.text,
-          );
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
     }
   }
 
@@ -93,9 +87,9 @@ class _LoginFormState extends State<_LoginForm> {
             'Welcome Back!',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: context.theme.primaryTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: AppColors.primaryTextLight,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 40),
           _EmailInput(controller: _emailController),
@@ -166,7 +160,7 @@ class _LoginButton extends StatelessWidget {
         return ElevatedButton(
           onPressed: state is AuthLoading ? null : onSubmit,
           style: ElevatedButton.styleFrom(
-            backgroundColor: context.theme.primaryColor,
+            backgroundColor: AppColors.primaryLight,
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -174,9 +168,9 @@ class _LoginButton extends StatelessWidget {
           ),
           child: state is AuthLoading
               ? const CircularProgressIndicator(color: Colors.white)
-              : Text(
+              : const Text(
                   'Login',
-                  style: TextStyle(color: context.theme.logoColor, fontSize: 16),
+                  style: TextStyle(color: AppColors.logoLight, fontSize: 16),
                 ),
         );
       },

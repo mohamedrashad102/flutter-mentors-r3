@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/extensions/theme_extension.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_router.dart';
 import '../presentation/cubit/auth_cubit.dart';
@@ -26,7 +26,7 @@ class _RegisterViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(gradient: context.theme.gradientBgColor),
+        decoration: const BoxDecoration(gradient: AppColors.gradientBgLight),
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
@@ -97,7 +97,7 @@ class _RegisterFormState extends State<_RegisterForm> {
               'Create an Account',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: context.theme.primaryTextColor,
+                color: AppColors.primaryTextLight,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -215,7 +215,7 @@ class _RegisterButton extends StatelessWidget {
         return ElevatedButton(
           onPressed: state is AuthLoading ? null : onSubmit,
           style: ElevatedButton.styleFrom(
-            backgroundColor: context.theme.primaryColor,
+            backgroundColor: AppColors.primaryLight,
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -223,10 +223,10 @@ class _RegisterButton extends StatelessWidget {
           ),
           child: state is AuthLoading
               ? const CircularProgressIndicator(color: Colors.white)
-              : Text(
+              : const Text(
                   'Register',
                   style: TextStyle(
-                    color: context.theme.logoColor,
+                    color: AppColors.logoLight,
                     fontSize: 16,
                   ),
                 ),

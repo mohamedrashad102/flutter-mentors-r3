@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/extensions/theme_extension.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
 import 'gender_selection.dart';
 
@@ -15,16 +15,16 @@ class WelcomeBottomCard extends StatelessWidget {
       height: 244,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: context.theme.cardBgColor,
+        color: AppColors.cardBgLight,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const Text(
             'Look Good, Feel Good',
             style: TextStyle(
-              color: context.theme.primaryTextColor,
+              color: AppColors.primaryTextLight,
               fontSize: 25,
               fontWeight: FontWeight.w600,
               height: 1.10,
@@ -32,11 +32,11 @@ class WelcomeBottomCard extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          Text(
+          const Text(
             'Create your individual & unique style and look amazing everyday.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: context.theme.primaryTextColor,
+              color: AppColors.primaryTextLight,
               fontSize: 15,
               fontWeight: FontWeight.w400,
               height: 1.40,

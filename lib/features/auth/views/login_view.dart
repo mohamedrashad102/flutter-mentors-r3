@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../core/extensions/theme_extension.dart';
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_colors.dart';
 import '../presentation/cubit/auth_cubit.dart';
 
 class LoginView extends StatelessWidget {
@@ -88,7 +87,7 @@ class _LoginFormState extends State<_LoginForm> {
             'Welcome Back!',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              color: context.theme.primaryTextColor,
+              color: AppColors.primaryTextLight,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -161,7 +160,7 @@ class _LoginButton extends StatelessWidget {
         return ElevatedButton(
           onPressed: state is AuthLoading ? null : onSubmit,
           style: ElevatedButton.styleFrom(
-            backgroundColor: context.theme.primaryColor,
+            backgroundColor: AppColors.primaryLight,
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -169,12 +168,9 @@ class _LoginButton extends StatelessWidget {
           ),
           child: state is AuthLoading
               ? const CircularProgressIndicator(color: Colors.white)
-              : Text(
+              : const Text(
                   'Login',
-                  style: TextStyle(
-                    color: context.theme.logoColor,
-                    fontSize: 16,
-                  ),
+                  style: TextStyle(color: AppColors.logoLight, fontSize: 16),
                 ),
         );
       },

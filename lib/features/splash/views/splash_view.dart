@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/extensions/theme_extension.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_assets.dart';
 import '../../../core/utils/app_router.dart';
 
@@ -26,11 +26,11 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.primaryColor,
+      backgroundColor: AppColors.primaryLight,
       body: Center(
         child: Image.asset(
           AppAssets.imagesLogo,
-          color: context.theme.logoColor,
+          color: AppColors.logoLight,
         ),
       ),
     );

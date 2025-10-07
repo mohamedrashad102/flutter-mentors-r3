@@ -14,15 +14,4 @@ abstract class AppColors {
   static const Gradient gradientBgLight = LinearGradient(
     colors: [Color(0XFFB0A3E5), Color(0XFF7661C5)],
   );
-
-  // ** dark colors **
-  static const Color primaryDark = Color(0XFF1B262C);
-  static const Color logoDark = primaryLight;
-  static const Color cardBgDark = Color(0XFF29363D);
-  static const Color primaryTextDark = Color(0xFFF5F8FB);
-
-  // ** dark gradient **
-  static const Gradient gradientBgDark = LinearGradient(
-    colors: [Color(0xFF1B262C), Color(0xFF1B262C)],
-  );
 }
