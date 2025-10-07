@@ -2,14 +2,15 @@ import 'package:dio/dio.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/dio_helper.dart';
+import '../../domain/entities/login_response.dart';
 import '../models/auth_request_models.dart';
 import '../models/login_response_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<void> register(RegisterRequestModel params);
-  Future<LoginResponseModel> login(LoginRequestModel params);
+  Future<LoginResponse> login(LoginRequestModel params);
   Future<void> verifyEmail(VerifyEmailRequestModel params);
-  Future<LoginResponseModel> refreshToken(RefreshTokenRequestModel params);
+  Future<LoginResponse> refreshToken(RefreshTokenRequestModel params);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -18,7 +19,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl({required this.dioHelper});
 
   @override
-  Future<LoginResponseModel> login(LoginRequestModel params) async {
+  Future<LoginResponse> login(LoginRequestModel params) async {
     try {
       final response = await dioHelper.post(
         '/auth/login',
@@ -55,7 +56,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LoginResponseModel> refreshToken(RefreshTokenRequestModel params) async {
+  Future<LoginResponse> refreshToken(RefreshTokenRequestModel params) async {
     try {
       final response = await dioHelper.post(
         '/auth/refresh-token',
