@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../cubit/auth_cubit.dart';
-import 'email_input.dart';
 import 'login_button.dart';
-import 'password_input.dart';
+import 'login_email_form.dart';
+import 'login_password_form.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -52,9 +52,9 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           const SizedBox(height: 40),
-          EmailInput(controller: _emailController),
+          LoginEmailForm(emailController: _emailController),
           const SizedBox(height: 20),
-          PasswordInput(controller: _passwordController),
+          LoginPasswordForm(passwordController: _passwordController),
           const SizedBox(height: 40),
           LoginButton(onSubmit: _submit),
         ],

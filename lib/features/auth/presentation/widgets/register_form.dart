@@ -5,8 +5,11 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../../../../core/widgets/custom_text_field.dart';
 import '../cubit/auth_cubit.dart';
+import 'register_email_field.dart';
+import 'register_first_name_field.dart';
+import 'register_last_name_field.dart';
+import 'register_password_field.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -69,54 +72,13 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
             ),
             const SizedBox(height: 40),
-            CustomTextField(
-              controller: _firstNameController,
-              labelText: 'First Name',
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your first name';
-                }
-                return null;
-              },
-            ),
+            RegisterFirstNameField(firstNameController: _firstNameController),
             const SizedBox(height: 20),
-            CustomTextField(
-              controller: _lastNameController,
-              labelText: 'Last Name',
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your last name';
-                }
-                return null;
-              },
-            ),
+            RegisterLastNameField(lastNameController: _lastNameController),
             const SizedBox(height: 20),
-            CustomTextField(
-              controller: _emailController,
-              labelText: 'Email',
-              keyboardType: TextInputType.emailAddress,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                if (!value.contains('@')) {
-                  return 'Please enter a valid email';
-                }
-                return null;
-              },
-            ),
+            RegisterEmailField(emailController: _emailController),
             const SizedBox(height: 20),
-            CustomTextField(
-              controller: _passwordController,
-              labelText: 'Password',
-              obscureText: true,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
-                }
-                return null;
-              },
-            ),
+            RegisterPasswordField(passwordController: _passwordController),
             const SizedBox(height: 40),
             BlocBuilder<AuthCubit, AuthState>(
               builder: (context, state) {

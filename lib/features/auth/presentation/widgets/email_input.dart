@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/helpers/validator_helper.dart';
+import '../../../../core/widgets/custom_text_field.dart';
+
 class EmailInput extends StatelessWidget {
-  const EmailInput({super.key, required this.controller});
+  const EmailInput({super.key, required this.controller, this.errorText});
 
   final TextEditingController controller;
+  final String? errorText;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return CustomTextField(
       controller: controller,
-      decoration: const InputDecoration(labelText: 'Email'),
+      labelText: 'Email',
+      errorText: errorText,
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter your email';
-        }
-        if (!value.contains('@')) {
-          return 'Please enter a valid email';
-        }
-        return null;
-      },
+      validator: ValidatorHelper.validateEmail,
     );
   }
 }

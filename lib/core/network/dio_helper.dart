@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../error/dio_exception_handler.dart';
+import '../helpers/d_print.dart';
 
 // Import the exception handler
 // Note: Make sure to create dio_exception_handler.dart file with the DioExceptionHandler class
@@ -96,34 +97,34 @@ class DioHelper {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           if (kDebugMode && enableLogging) {
-            print('🚀 REQUEST[${options.method}] => PATH: ${options.path}');
-            print('Headers: ${options.headers}');
+            dPrint('🚀 REQUEST[${options.method}] => PATH: ${options.path}');
+            dPrint('Headers: ${options.headers}');
             if (options.data != null) {
-              print('Data: ${options.data}');
+              dPrint('Data: ${options.data}');
             }
             if (options.queryParameters.isNotEmpty) {
-              print('Query Parameters: ${options.queryParameters}');
+              dPrint('Query Parameters: ${options.queryParameters}');
             }
           }
           handler.next(options);
         },
         onResponse: (response, handler) {
           if (kDebugMode && enableLogging) {
-            print(
+            dPrint(
               '✅ RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
             );
-            print('Data: ${response.data}');
+            dPrint('Data: ${response.data}');
           }
           handler.next(response);
         },
         onError: (error, handler) {
           if (kDebugMode && enableLogging) {
-            print(
+            dPrint(
               '❌ ERROR[${error.response?.statusCode}] => PATH: ${error.requestOptions.path}',
             );
-            print('Message: ${error.message}');
+            dPrint('Message: ${error.message}');
             if (error.response?.data != null) {
-              print('Error Data: ${error.response?.data}');
+              dPrint('Error Data: ${error.response?.data}');
             }
           }
           handler.next(error);

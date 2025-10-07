@@ -466,9 +466,6 @@ class DioExceptionHandler {
 
   /// Extract validation errors from response data
   static Map<String, dynamic>? _extractValidationErrors(dynamic responseData) {
-    print('-' * 50);
-    print(responseData);
-    print('-' * 50);
     if (responseData == null) return null;
 
     try {
