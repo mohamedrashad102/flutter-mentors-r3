@@ -14,14 +14,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, LoginResponse>> login(LoginParams params) async {
-    try {
-      final remoteLogin = await remoteDataSource.login(
-        LoginRequestModel(email: params.email, password: params.password),
-      );
-      return Right(remoteLogin);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
-    }
+    return await remoteDataSource.login(
+      LoginRequestModel(email: params.email, password: params.password),
+    );
   }
 
   @override
@@ -55,7 +50,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, LoginResponse>> refreshToken(
-      RefreshTokenParams params) async {
+    RefreshTokenParams params,
+  ) async {
     try {
       final remoteLogin = await remoteDataSource.refreshToken(
         RefreshTokenRequestModel(refreshToken: params.refreshToken),

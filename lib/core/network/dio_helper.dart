@@ -1,6 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+import '../error/dio_exception_handler.dart';
+
+// Import the exception handler
+// Note: Make sure to create dio_exception_handler.dart file with the DioExceptionHandler class
+
 /// Callback function for token refresh
 typedef TokenRefreshCallback =
     Future<TokenResponse> Function(String refreshToken);
@@ -189,8 +194,18 @@ class DioHelper {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onError: (error, handler) {
-          final dioException = _handleDioError(error);
-          handler.reject(dioException);
+          final apiException = DioExceptionHandler.handleException(error);
+
+          // Create a new DioException with custom error message
+          final customError = DioException(
+            requestOptions: error.requestOptions,
+            response: error.response,
+            type: error.type,
+            error: apiException,
+            message: apiException.message,
+          );
+
+          handler.reject(customError);
         },
       ),
     );
@@ -218,77 +233,27 @@ class DioHelper {
     _pendingRequests.clear();
   }
 
-  /// Handle Dio errors and provide meaningful error messages
-  DioException _handleDioError(DioException error) {
-    String errorMessage;
-
-    switch (error.type) {
-      case DioExceptionType.connectionTimeout:
-        errorMessage =
-            'Connection timeout. Please check your internet connection.';
-        break;
-      case DioExceptionType.sendTimeout:
-        errorMessage = 'Send timeout. Please try again.';
-        break;
-      case DioExceptionType.receiveTimeout:
-        errorMessage = 'Receive timeout. Please try again.';
-        break;
-      case DioExceptionType.badResponse:
-        errorMessage = _handleHttpError(error.response?.statusCode);
-        break;
-      case DioExceptionType.cancel:
-        errorMessage = 'Request was cancelled.';
-        break;
-      case DioExceptionType.connectionError:
-        errorMessage = 'No internet connection. Please check your network.';
-        break;
-      case DioExceptionType.badCertificate:
-        errorMessage = 'Certificate error. Please try again.';
-        break;
-      case DioExceptionType.unknown:
-        errorMessage = 'An unexpected error occurred. Please try again.';
-        break;
+  /// Get ApiException from DioException
+  static ApiException? getApiException(DioException error) {
+    if (error.error is ApiException) {
+      return error.error as ApiException;
     }
-
-    return DioException(
-      requestOptions: error.requestOptions,
-      response: error.response,
-      type: error.type,
-      error: errorMessage,
-      message: errorMessage,
-    );
+    return null;
   }
 
-  /// Handle HTTP status code errors
-  String _handleHttpError(int? statusCode) {
-    switch (statusCode) {
-      case 400:
-        return 'Bad request. Please check your input.';
-      case 401:
-        return 'Unauthorized. Please login again.';
-      case 403:
-        return 'Forbidden. You don\'t have permission to access this resource.';
-      case 404:
-        return 'Resource not found.';
-      case 408:
-        return 'Request timeout. Please try again.';
-      case 409:
-        return 'Conflict. The resource already exists.';
-      case 422:
-        return 'Validation error. Please check your input.';
-      case 429:
-        return 'Too many requests. Please try again later.';
-      case 500:
-        return 'Internal server error. Please try again later.';
-      case 502:
-        return 'Bad gateway. Please try again later.';
-      case 503:
-        return 'Service unavailable. Please try again later.';
-      case 504:
-        return 'Gateway timeout. Please try again later.';
-      default:
-        return 'An error occurred. Please try again.';
+  /// Handle error and return ApiException
+  static ApiException handleError(dynamic error) {
+    if (error is DioException) {
+      if (error.error is ApiException) {
+        return error.error as ApiException;
+      }
+      return DioExceptionHandler.handleException(error);
     }
+
+    return ApiException(
+      type: ApiExceptionType.unknown,
+      message: error.toString(),
+    );
   }
 
   /// Set access token

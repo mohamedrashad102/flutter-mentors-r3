@@ -40,7 +40,7 @@ class VerifyEmailView extends StatelessWidget {
           } else if (state is AuthFailure) {
             ScaffoldMessenger.of(
               context,
-            ).showSnackBar(SnackBar(content: Text(state.message)));
+            ).showSnackBar(SnackBar(content: Text(state.failure.message)));
           }
         },
         child: Padding(

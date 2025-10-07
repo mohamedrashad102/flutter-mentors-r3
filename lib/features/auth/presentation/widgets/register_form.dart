@@ -51,7 +51,7 @@ class _RegisterFormState extends State<RegisterForm> {
         } else if (state is AuthFailure) {
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          ).showSnackBar(SnackBar(content: Text(state.failure.message)));
         }
       },
       child: Form(

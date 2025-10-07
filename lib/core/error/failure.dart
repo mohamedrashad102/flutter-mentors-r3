@@ -1,24 +1,20 @@
-abstract class Failure {
+import 'package:equatable/equatable.dart';
+
+abstract class Failure extends Equatable {
   final String message;
+  final Map<String, dynamic>? errorDetails;
 
-  const Failure(this.message);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Failure && other.message == message;
-  }
+  const Failure(this.message, {this.errorDetails});
 
   @override
-  int get hashCode => message.hashCode;
+  List<Object?> get props => [message, errorDetails];
 }
 
 // General failures
 class ServerFailure extends Failure {
-  const ServerFailure(super.message);
+  const ServerFailure(super.message, {super.errorDetails});
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure(super.message);
+  const CacheFailure(super.message, {super.errorDetails});
 }

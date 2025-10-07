@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/error/failure.dart';
 import '../../domain/entities/login_response.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../domain/usecases/login_usecase.dart';
@@ -29,7 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
       LoginParams(email: email, password: password),
     );
     result.fold(
-      (failure) => emit(AuthFailure(failure.message)),
+      (failure) => emit(AuthFailure(failure)),
       (loginResponse) => emit(AuthSuccess(loginResponse)),
     );
   }
@@ -50,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
       ),
     );
     result.fold(
-      (failure) => emit(AuthFailure(failure.message)),
+      (failure) => emit(AuthFailure(failure)),
       (_) => emit(RegisterSuccess()),
     );
   }
@@ -61,7 +62,7 @@ class AuthCubit extends Cubit<AuthState> {
       VerifyEmailParams(email: email, otp: otp),
     );
     result.fold(
-      (failure) => emit(AuthFailure(failure.message)),
+      (failure) => emit(AuthFailure(failure)),
       (_) => emit(VerificationSuccess()),
     );
   }
