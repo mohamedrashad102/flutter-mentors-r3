@@ -7,6 +7,7 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/domain/usecases/login_usecase.dart';
 import '../../features/auth/domain/usecases/refresh_token_usecase.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
+import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/auth/domain/usecases/verify_email_usecase.dart';
 import '../network/token_storage.dart';
 import '../network/dio_helper.dart';
@@ -37,6 +38,13 @@ Future<void> setupLocator() async {
   di.registerFactory(() => LoginUseCase(di()));
   di.registerFactory(() => VerifyEmailUseCase(di()));
   di.registerFactory(() => RefreshTokenUseCase(di()));
+
+  // Cubits
+  di.registerFactory(() => AuthCubit(
+        loginUseCase: di(),
+        registerUseCase: di(),
+        verifyEmailUseCase: di(),
+      ));
 
   dioHelper.initialize(
     baseUrl: 'https://accessories-eshop.runasp.net/api',

@@ -47,7 +47,7 @@ class WelcomeBottomCard extends StatelessWidget {
           const Gap(20),
           InkWell(
             onTap: () {
-              context.go(AppRouter.getStarted);
+              context.go(AppRouter.register);
             },
             child: const Text(
               'Skip',
