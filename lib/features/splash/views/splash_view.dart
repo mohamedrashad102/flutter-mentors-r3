@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/extensions/theme_extension.dart';
-import '../../core/utils/app_images.dart';
+import '../../../core/extensions/theme_extension.dart';
+import '../../../core/utils/app_assets.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -16,7 +16,10 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       backgroundColor: context.theme.primaryColor,
       body: Center(
-        child: Image.asset(AppImages.logo, color: context.theme.logoColor),
+        child: Image.asset(
+          AppAssets.imagesLogo,
+          color: context.theme.logoColor,
+        ),
       ),
     );
   }
