@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/theme_extension.dart';
+import '../../../core/utils/app_router.dart';
 import 'gender_selection.dart';
 
 class WelcomeBottomCard extends StatelessWidget {
@@ -43,13 +45,18 @@ class WelcomeBottomCard extends StatelessWidget {
           const Gap(20),
           const GenderSelection(),
           const Gap(20),
-          const Text(
-            'Skip',
-            style: TextStyle(
-              color: Color(0xFF8F959E),
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
-              height: 1.10,
+          InkWell(
+            onTap: () {
+              context.go(AppRouter.getStarted);
+            },
+            child: const Text(
+              'Skip',
+              style: TextStyle(
+                color: Color(0xFF8F959E),
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+                height: 1.10,
+              ),
             ),
           ),
         ],
