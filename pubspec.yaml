@@ -39,6 +39,9 @@ dependencies:
   shared_preferences: ^2.5.3
   get_it: ^8.2.0
   gap: ^3.0.1
+  flutter_secure_storage: ^9.2.4
+  dio: ^5.9.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
