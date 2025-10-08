@@ -11,7 +11,10 @@ void main() async {
   await setupLocator();
 
   runApp(
-    DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()),
+    DevicePreview(
+      enabled: !kReleaseMode && false,
+      builder: (context) => const MyApp(),
+    ),
   );
 }
 

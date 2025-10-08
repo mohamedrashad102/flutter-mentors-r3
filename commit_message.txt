@@ -1,7 +1,1 @@
-refactor(auth): Refactor auth flow and add home screen
-
-- Refactor the authentication flow by moving the `BlocListener` from the form widgets to the view widgets. This centralizes the logic for handling UI events like navigation and showing snackbars.
-- Add the home screen and navigate to it after a successful login.
-- Pass the email to the `RegisterSuccess` state to be used in the verification screen.
-- Display API-provided error messages for the OTP field in the email verification form.
-- Add a link to the registration page from the login page.
+تريفينا 

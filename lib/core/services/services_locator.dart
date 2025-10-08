@@ -11,6 +11,15 @@ import '../../features/auth/domain/usecases/refresh_token_usecase.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/verify_email_usecase.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../features/product/data/datasources/product_remote_data_source.dart';
+import '../../features/product/data/repositories/product_repository_impl.dart';
+import '../../features/product/domain/repositories/product_repository.dart';
+import '../../features/product/domain/usecases/get_categories.dart';
+import '../../features/product/domain/usecases/get_product_by_id.dart';
+import '../../features/product/domain/usecases/get_products.dart';
+import '../../features/product/presentation/cubits/category_products_cubit.dart';
+import '../../features/product/presentation/cubits/home_cubit.dart';
+import '../../features/product/presentation/cubits/product_details_cubit.dart';
 import '../network/dio_helper.dart';
 
 final di = GetIt.instance;
@@ -55,6 +64,29 @@ Future<void> setupLocator() async {
       verifyEmailUseCase: di(),
     ),
   );
+
+  // Features - Product
+  // Data sources
+  di.registerLazySingleton<ProductRemoteDataSource>(
+    () => ProductRemoteDataSourceImpl(dioHelper: di()),
+  );
+
+  // Repositories
+  di.registerLazySingleton<ProductRepository>(
+    () => ProductRepositoryImpl(remoteDataSource: di()),
+  );
+
+  // Use cases
+  di.registerFactory(() => GetProducts(di()));
+  di.registerFactory(() => GetProductById(di()));
+  di.registerFactory(() => GetCategories(di()));
+
+  // Cubits
+  di.registerFactory(
+    () => HomeCubit(getProductsUseCase: di(), getCategoriesUseCase: di()),
+  );
+  di.registerFactory(() => ProductDetailsCubit(getProductByIdUseCase: di()));
+  di.registerFactory(() => CategoryProductsCubit(getProductsUseCase: di()));
 
   dioHelper.initialize(
     baseUrl: 'https://accessories-eshop.runasp.net/api',

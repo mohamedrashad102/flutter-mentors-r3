@@ -3,7 +3,9 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/view/login_view.dart';
 import '../../features/auth/presentation/view/register_view.dart';
 import '../../features/auth/presentation/view/verify_email_view.dart';
-import '../../features/home/presentation/views/home_view.dart';
+import '../../features/product/presentation/views/category_products_view.dart';
+import '../../features/product/presentation/views/home_view.dart';
+import '../../features/product/presentation/views/product_details_view.dart';
 import '../../features/splash/views/splash_view.dart';
 import '../../features/splash/views/welcome_view.dart';
 
@@ -14,6 +16,8 @@ abstract class AppRouter {
   static const register = '/register';
   static const verifyEmail = '/verify-email';
   static const home = '/home';
+  static const productDetails = '/product/:id';
+  static const categoryProducts = '/category/:id';
 
   static final router = GoRouter(
     initialLocation: splash,
@@ -33,6 +37,20 @@ abstract class AppRouter {
         },
       ),
       GoRoute(path: home, builder: (context, state) => const HomeView()),
+      GoRoute(
+        path: productDetails,
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return ProductDetailsView(id: id);
+        },
+      ),
+      GoRoute(
+        path: categoryProducts,
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return CategoryProductsView(categoryId: id);
+        },
+      ),
     ],
   );
 }

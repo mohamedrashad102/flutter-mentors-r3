@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/extensions/custom_snackbar_x.dart';
+import '../../../../core/network/dio_helper.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
@@ -35,6 +36,12 @@ class LoginView extends StatelessWidget {
             context.showCustomSnackbar(
               message: 'Login Successfully',
               variant: SnackBarVariant.success,
+            );
+            di<LocalAuthDataSource>().saveTokens(
+              TokenResponse(
+                accessToken: state.loginResponse.accessToken,
+                refreshToken: state.loginResponse.refreshToken,
+              ),
             );
             context.go(AppRouter.home);
             di<LocalAuthDataSource>().setIsLogin(true);

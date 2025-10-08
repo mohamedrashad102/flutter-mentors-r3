@@ -361,6 +361,7 @@ class DioHelper {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
     Map<String, dynamic>? headers,
+    dynamic data,
   }) async {
     try {
       final response = await _dio.get<T>(
@@ -369,6 +370,7 @@ class DioHelper {
         options: _buildOptions(options, headers),
         cancelToken: cancelToken ?? _cancelToken,
         onReceiveProgress: onReceiveProgress,
+        data: data,
       );
       return response;
     } catch (e) {
