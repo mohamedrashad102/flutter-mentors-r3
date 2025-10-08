@@ -6,6 +6,7 @@ import '../../../../core/extensions/custom_snackbar_x.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
+import '../../data/datasources/local_auth_data_source.dart';
 import '../cubit/auth_cubit.dart';
 import '../widgets/login_form.dart';
 
@@ -36,9 +37,12 @@ class LoginView extends StatelessWidget {
               variant: SnackBarVariant.success,
             );
             context.go(AppRouter.home);
+            di<LocalAuthDataSource>().setIsLogin(true);
           } else if (state is AuthFailure) {
+            String? generalError =
+                state.failure.errorDetails?['generalErrors']?[0];
             context.showCustomSnackbar(
-              message: state.failure.message,
+              message: generalError ?? state.failure.message,
               variant: SnackBarVariant.error,
             );
           }

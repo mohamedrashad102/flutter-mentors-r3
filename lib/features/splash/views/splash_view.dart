@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/utils/app_colors.dart';
+import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_assets.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_router.dart';
+import '../../auth/data/datasources/local_auth_data_source.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -19,7 +21,12 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 2), () {
-      context.go(AppRouter.welcome);
+      final isLogin = di<LocalAuthDataSource>().isLogin;
+      if (isLogin) {
+        context.go(AppRouter.home);
+      } else {
+        context.go(AppRouter.login);
+      }
     });
   }
 
@@ -28,10 +35,7 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       backgroundColor: AppColors.primaryLight,
       body: Center(
-        child: Image.asset(
-          AppAssets.imagesLogo,
-          color: AppColors.logoLight,
-        ),
+        child: Image.asset(AppAssets.imagesLogo, color: AppColors.logoLight),
       ),
     );
   }
