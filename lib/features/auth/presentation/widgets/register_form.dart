@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/extensions/custom_snackbar_x.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_snackbar.dart';
 import '../cubit/auth_cubit.dart';
 import 'register_email_field.dart';
 import 'register_first_name_field.dart';
@@ -52,9 +54,10 @@ class _RegisterFormState extends State<RegisterForm> {
         if (state is RegisterSuccess) {
           context.go(AppRouter.verifyEmail, extra: _emailController.text);
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.failure.message)));
+          context.showCustomSnackbar(
+            message: state.failure.message,
+            variant: SnackBarVariant.error,
+          );
         }
       },
       child: Form(

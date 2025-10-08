@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/extensions/custom_snackbar_x.dart';
 import '../../../../core/services/services_locator.dart';
+import '../../../../core/widgets/custom_snackbar.dart';
 import '../cubit/auth_cubit.dart';
 import '../widgets/login_form.dart';
 
@@ -27,15 +29,15 @@ class LoginView extends StatelessWidget {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            // Navigate to home screen on success
-            // context.go('/home');
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(const SnackBar(content: Text('Login Successful!')));
+            context.showCustomSnackbar(
+              message: 'Login Successfully',
+              variant: SnackBarVariant.error,
+            );
           } else if (state is AuthFailure) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.failure.message)));
+            context.showCustomSnackbar(
+              message: state.failure.message,
+              variant: SnackBarVariant.error,
+            );
           }
         },
         child: const Padding(
