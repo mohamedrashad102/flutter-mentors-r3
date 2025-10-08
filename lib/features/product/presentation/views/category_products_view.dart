@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/services/services_locator.dart';
-import '../cubits/category_products_cubit.dart';
-import '../widgets/product_card.dart';
+import 'package:laza/core/services/services_locator.dart';
+import 'package:laza/features/product/presentation/cubits/category_products_cubit.dart';
+import 'package:laza/features/product/presentation/widgets/product_card.dart';
 
 class CategoryProductsView extends StatelessWidget {
   final String categoryId;
@@ -16,7 +15,11 @@ class CategoryProductsView extends StatelessWidget {
       create: (context) =>
           di<CategoryProductsCubit>()..fetchInitialProducts(categoryId),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Products')),
+        appBar: AppBar(
+          title: const Text('Products'),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        ),
         body: BlocBuilder<CategoryProductsCubit, CategoryProductsState>(
           builder: (context, state) {
             if (state is CategoryProductsLoading) {
@@ -25,12 +28,12 @@ class CategoryProductsView extends StatelessWidget {
               return Center(child: Text(state.message));
             } else if (state is CategoryProductsLoaded) {
               return GridView.builder(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(20.0),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.75,
-                  crossAxisSpacing: 8.0,
-                  mainAxisSpacing: 8.0,
+                  childAspectRatio: 0.7,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 15,
                 ),
                 itemCount: state.hasReachedMax
                     ? state.products.length

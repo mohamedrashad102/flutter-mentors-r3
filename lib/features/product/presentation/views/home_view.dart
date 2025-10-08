@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/services/services_locator.dart';
-import '../cubits/home_cubit.dart';
-import '../widgets/category_card.dart';
-import '../widgets/product_card.dart';
+import 'package:laza/core/services/services_locator.dart';
+import 'package:laza/core/widgets/custom_text_field.dart';
+import 'package:laza/features/product/presentation/cubits/home_cubit.dart';
+import 'package:laza/features/product/presentation/widgets/category_card.dart';
+import 'package:laza/features/product/presentation/widgets/product_card.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,27 +29,35 @@ class HomeView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Laza'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                // TODO: Implement search
-              },
-            ),
-          ],
+          elevation: 0,
+          backgroundColor: Colors.transparent,
         ),
-        body: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            if (state is HomeLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is HomeError) {
-              return Center(child: Text(state.message));
-            } else if (state is HomeLoaded) {
-              return CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 120,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomTextField(
+                controller: _searchController,
+                labelText: 'Search',
+                prefixIcon: const Icon(Icons.search),
+                onFieldSubmitted: (value) {
+                  context.read<HomeCubit>().fetchInitialData(searchTerm: value);
+                },
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Categories',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              BlocBuilder<HomeCubit, HomeState>(
+                buildWhen: (previous, current) =>
+                    current is HomeLoaded || current is HomeLoading,
+                builder: (context, state) {
+                  if (state is HomeLoaded) {
+                    return SizedBox(
+                      height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: state.categories.length,
@@ -44,37 +66,52 @@ class HomeView extends StatelessWidget {
                           return CategoryCard(category: category);
                         },
                       ),
-                    ),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(8.0),
-                    sliver: SliverGrid(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.75,
-                        crossAxisSpacing: 8.0,
-                        mainAxisSpacing: 8.0,
-                      ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                },
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Products',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) {
+                    if (state is HomeLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is HomeError) {
+                      return Center(child: Text(state.message));
+                    } else if (state is HomeLoaded) {
+                      return GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.7,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                        ),
+                        itemCount: state.hasReachedMax
+                            ? state.products.length
+                            : state.products.length + 1,
+                        itemBuilder: (context, index) {
                           if (index >= state.products.length) {
                             context.read<HomeCubit>().fetchMoreProducts();
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           }
                           final product = state.products[index];
                           return ProductCard(product: product);
                         },
-                        childCount: state.hasReachedMax
-                            ? state.products.length
-                            : state.products.length + 1,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            }
-            return const SizedBox.shrink();
-          },
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
