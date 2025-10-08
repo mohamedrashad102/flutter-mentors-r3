@@ -29,6 +29,13 @@ class AuthFailure extends AuthState {
   List<Object> get props => [failure];
 }
 
-class RegisterSuccess extends AuthState {}
+class RegisterSuccess extends AuthState {
+  final String email;
+
+  const RegisterSuccess(this.email);
+
+  @override
+  List<Object> get props => [email];
+}
 
 class VerificationSuccess extends AuthState {}

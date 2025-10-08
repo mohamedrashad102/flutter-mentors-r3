@@ -52,7 +52,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
     result.fold(
       (failure) => emit(AuthFailure(failure)),
-      (_) => emit(RegisterSuccess()),
+      (_) => emit(RegisterSuccess(email)),
     );
   }
 

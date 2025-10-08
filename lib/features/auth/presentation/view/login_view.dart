@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/extensions/custom_snackbar_x.dart';
 import '../../../../core/services/services_locator.dart';
+import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_snackbar.dart';
 import '../cubit/auth_cubit.dart';
 import '../widgets/login_form.dart';
@@ -31,8 +33,9 @@ class LoginView extends StatelessWidget {
           if (state is AuthSuccess) {
             context.showCustomSnackbar(
               message: 'Login Successfully',
-              variant: SnackBarVariant.error,
+              variant: SnackBarVariant.success,
             );
+            context.go(AppRouter.home);
           } else if (state is AuthFailure) {
             context.showCustomSnackbar(
               message: state.failure.message,

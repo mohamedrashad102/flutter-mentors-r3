@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/extensions/custom_snackbar_x.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../../../../core/widgets/custom_snackbar.dart';
 import '../cubit/auth_cubit.dart';
 import 'register_email_field.dart';
 import 'register_first_name_field.dart';
@@ -49,56 +47,44 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is RegisterSuccess) {
-          context.go(AppRouter.verifyEmail, extra: _emailController.text);
-        } else if (state is AuthFailure) {
-          context.showCustomSnackbar(
-            message: state.failure.message,
-            variant: SnackBarVariant.error,
-          );
-        }
-      },
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              'Create an Account',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: AppColors.primaryTextLight,
-                fontWeight: FontWeight.bold,
-              ),
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 20),
+          Text(
+            'Create an Account',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+              color: AppColors.primaryTextLight,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height: 40),
-            RegisterFirstNameField(firstNameController: _firstNameController),
-            const SizedBox(height: 20),
-            RegisterLastNameField(lastNameController: _lastNameController),
-            const SizedBox(height: 20),
-            RegisterEmailField(emailController: _emailController),
-            const SizedBox(height: 20),
-            RegisterPasswordField(passwordController: _passwordController),
-            const SizedBox(height: 40),
-            BlocBuilder<AuthCubit, AuthState>(
-              builder: (context, state) {
-                return CustomButton(
-                  onPressed: _submit,
-                  text: 'Register',
-                  isLoading: state is AuthLoading,
-                );
-              },
-            ),
-            const SizedBox(height: 20),
-            TextButton(
-              onPressed: () => context.go(AppRouter.login),
-              child: const Text("Already have an account? Login"),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 40),
+          RegisterFirstNameField(firstNameController: _firstNameController),
+          const SizedBox(height: 20),
+          RegisterLastNameField(lastNameController: _lastNameController),
+          const SizedBox(height: 20),
+          RegisterEmailField(emailController: _emailController),
+          const SizedBox(height: 20),
+          RegisterPasswordField(passwordController: _passwordController),
+          const SizedBox(height: 40),
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              return CustomButton(
+                onPressed: _submit,
+                text: 'Register',
+                isLoading: state is AuthLoading,
+              );
+            },
+          ),
+          const SizedBox(height: 20),
+          TextButton(
+            onPressed: () => context.go(AppRouter.login),
+            child: const Text("Already have an account? Login"),
+          ),
+        ],
       ),
     );
   }

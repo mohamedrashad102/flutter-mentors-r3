@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
@@ -58,15 +59,27 @@ class _VerifyEmailFormState extends State<VerifyEmailForm> {
             ).textTheme.bodyMedium?.copyWith(color: AppColors.primaryTextLight),
           ),
           const SizedBox(height: 40),
-          CustomTextField(
-            controller: _otpController,
-            labelText: 'OTP',
-            keyboardType: TextInputType.number,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter the OTP';
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) {
+              String? otpError;
+              if (state is AuthFailure && state.failure.errorDetails != null) {
+                final errors = state.failure.errorDetails!['otp'];
+                if (errors is List && errors.isNotEmpty) {
+                  otpError = errors.first;
+                }
               }
-              return null;
+              return CustomTextField(
+                controller: _otpController,
+                labelText: 'OTP',
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the OTP';
+                  }
+                  return null;
+                },
+                errorText: otpError,
+              );
             },
           ),
           const SizedBox(height: 40),

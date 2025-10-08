@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_router.dart';
 import '../cubit/auth_cubit.dart';
 import 'login_button.dart';
 import 'login_email_form.dart';
@@ -57,6 +59,11 @@ class _LoginFormState extends State<LoginForm> {
           LoginPasswordForm(passwordController: _passwordController),
           const SizedBox(height: 40),
           LoginButton(onSubmit: _submit),
+          const SizedBox(height: 20),
+          TextButton(
+            onPressed: () => context.go(AppRouter.register),
+            child: const Text('Don\'t have an account? Sign up'),
+          ),
         ],
       ),
     );
