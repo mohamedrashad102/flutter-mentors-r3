@@ -20,12 +20,13 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 10), () {
+      di<LocalAuthDataSource>().setIsLogin(false);
       final isLogin = di<LocalAuthDataSource>().isLogin;
       if (isLogin) {
         context.go(AppRouter.home);
       } else {
-        context.go(AppRouter.login);
+        context.go(AppRouter.welcome);
       }
     });
   }

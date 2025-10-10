@@ -19,27 +19,42 @@ class CategoryCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
           children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundColor: AppColors.cardBgLight,
-              child: SvgPicture.network(
-                category.coverPictureUrl!,
-                width: 24,
-                height: 24,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.primaryTextLight,
-                  BlendMode.srcIn,
+            Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: AppColors.cardBgLight,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withValues(alpha: 0.1),
+                    spreadRadius: 1,
+                    blurRadius: 10,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SvgPicture.network(
+                  category.coverPictureUrl!,
+                  width: 28,
+                  height: 28,
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.primaryTextLight,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Text(
               category.name,
               style: const TextStyle(
-                fontSize: 15,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: AppColors.secondaryText,
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

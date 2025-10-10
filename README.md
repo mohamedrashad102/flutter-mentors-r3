@@ -6,9 +6,14 @@ A modern e-commerce application for accessories, built with Flutter.
 
 *   **Authentication**: Full auth flow including login, registration, and email verification.
 *   **Splash & Welcome Screens**: An engaging onboarding experience for new users.
+*   **Product**: Browsing products, viewing product details, and filtering by category.
 *   **Clean Architecture**: A robust and scalable architecture separating business logic from UI.
 *   **State Management**: Predictable state management using BLoC (Cubit).
 *   **Theming**: A centralized theme system for a consistent look and feel.
+
+## 🎥 Demo
+
+[Demo video or screenshots will be added here]
 
 ## 🚀 Getting Started
 
@@ -55,11 +60,40 @@ The project is organized by feature, with a `core` directory for shared function
 
 ```
 lib
-├── core/           # Shared utilities, services, and widgets
-├── features/       # Feature-based modules
-│   └── auth/       # Authentication feature
-│       ├── data/
-│       ├── domain/
-│       └── presentation/
-└── main.dart       # App entry point
+├── core/
+│   ├── error/
+│   ├── extensions/
+│   ├── helpers/
+│   ├── network/
+│   ├── services/
+│   ├── utils/
+│   └── widgets/
+├── features/
+│   ├── auth/
+│   │   ├── data/
+│   │   ├── domain/
+│   │   └── presentation/
+│   ├── product/
+│   │   ├── data/
+│   │   ├── domain/
+│   │   └── presentation/
+│   └── splash/
+│       ├── views/
+│       └── widgets/
+└── main.dart
 ```
+
+## Endpoints
+
+### Authentication
+
+*   `POST /auth/register`: Register a new user.
+*   `POST /auth/login`: Log in a user.
+*   `POST /auth/verify-email`: Verify a user's email with an OTP.
+*   `POST /auth/refresh-token`: Refresh an authentication token.
+
+### Products
+
+*   `GET /products`: Get a list of products.
+*   `GET /products/{id}`: Get a single product by ID.
+*   `GET /categories`: Get a list of product categories.

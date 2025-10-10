@@ -316,7 +316,6 @@ class DioHelper {
   }
 
   /// Set authentication token (deprecated - use setAccessToken)
-  @Deprecated('Use setAccessToken instead')
   void setAuthToken(String token, {String tokenType = 'Bearer'}) {
     setAccessToken(token, tokenType: tokenType);
   }

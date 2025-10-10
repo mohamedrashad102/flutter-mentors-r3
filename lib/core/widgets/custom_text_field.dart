@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final String? errorText;
   final Icon? prefixIcon;
+  final Widget? suffixIcon;
   final String? Function(String?)? validator;
   final Function(String)? onFieldSubmitted;
 
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
     this.errorText,
     this.validator,
     this.prefixIcon,
+    this.suffixIcon,
     this.onFieldSubmitted,
   });
 
@@ -30,6 +32,7 @@ class CustomTextField extends StatelessWidget {
         labelText: labelText,
         errorText: errorText,
         prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
       ),
       obscureText: obscureText,
       keyboardType: keyboardType,

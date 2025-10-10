@@ -43,6 +43,10 @@ class LoginView extends StatelessWidget {
                 refreshToken: state.loginResponse.refreshToken,
               ),
             );
+            di<DioHelper>().setTokens(
+              accessToken: state.loginResponse.accessToken,
+              refreshToken: state.loginResponse.refreshToken,
+            );
             context.go(AppRouter.home);
             di<LocalAuthDataSource>().setIsLogin(true);
           } else if (state is AuthFailure) {

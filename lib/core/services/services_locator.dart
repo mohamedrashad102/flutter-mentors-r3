@@ -99,7 +99,7 @@ Future<void> setupLocator() async {
       );
 
       return result.fold(
-        (failure) => throw failure, // TODO: Handle failure
+        (failure) => throw failure,
         (loginResponse) {
           final token = TokenResponse(
             accessToken: loginResponse.accessToken,
