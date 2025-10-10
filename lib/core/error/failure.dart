@@ -8,6 +8,61 @@ abstract class Failure extends Equatable {
 
   @override
   List<Object?> get props => [message, errorDetails];
+
+  String? get passwordError {
+    String? error;
+    if (errorDetails != null) {
+      final errors = errorDetails!['password'];
+      if (errors is List && errors.isNotEmpty) {
+        error = errors.first;
+      }
+    }
+    return error;
+  }
+
+  String? get emailError {
+    String? error;
+    if (errorDetails != null) {
+      final errors = errorDetails!['email'];
+      if (errors is List && errors.isNotEmpty) {
+        error = errors.first;
+      }
+    }
+    return error;
+  }
+
+  String? get otpError {
+    String? error;
+    if (errorDetails != null) {
+      final errors = errorDetails!['otp'];
+      if (errors is List && errors.isNotEmpty) {
+        error = errors.first;
+      }
+    }
+    return error;
+  }
+
+  String? get firstNameError {
+    String? error;
+    if (errorDetails != null) {
+      final errors = errorDetails!['firstName'];
+      if (errors is List && errors.isNotEmpty) {
+        error = errors.first;
+      }
+    }
+    return error;
+  }
+
+  String? get lastNameError {
+    String? error;
+    if (errorDetails != null) {
+      final errors = errorDetails!['lastName'];
+      if (errors is List && errors.isNotEmpty) {
+        error = errors.first;
+      }
+    }
+    return error;
+  }
 }
 
 // General failures

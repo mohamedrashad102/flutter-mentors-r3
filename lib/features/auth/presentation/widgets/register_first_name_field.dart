@@ -18,11 +18,8 @@ class RegisterFirstNameField extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         String? firstNameError;
-        if (state is AuthFailure && state.failure.errorDetails != null) {
-          final errors = state.failure.errorDetails!['firstName'];
-          if (errors is List && errors.isNotEmpty) {
-            firstNameError = errors.first;
-          }
+        if (state is AuthFailure) {
+          firstNameError = state.failure.firstNameError;
         }
         return CustomTextField(
           controller: _firstNameController,

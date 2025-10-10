@@ -12,12 +12,19 @@ class ValidatorHelper {
   }
 
   /// Validate password strength
-  static String? validatePassword(String? value, {int minLength = 6}) {
+  static String? validatePassword(
+    String? value, {
+    int minLength = 6,
+    bool isLogin = false,
+  }) {
     if (value == null || value.isEmpty) {
       return 'Password is required';
     }
     if (value.length < minLength) {
       return 'Password must be at least $minLength characters long';
+    }
+    if (isLogin) {
+      return null;
     }
     final hasUpperCase = value.contains(RegExp(r'[A-Z]'));
     final hasLowerCase = value.contains(RegExp(r'[a-z]'));

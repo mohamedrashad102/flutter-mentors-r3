@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laza/core/utils/app_colors.dart';
-import 'package:laza/features/product/domain/entities/category.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../domain/entities/category.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;

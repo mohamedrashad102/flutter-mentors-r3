@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laza/core/utils/app_colors.dart';
-import 'package:laza/features/product/domain/entities/product.dart';
-import 'package:laza/features/product/presentation/widgets/custom_card.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../domain/entities/product.dart';
+import 'custom_card.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;

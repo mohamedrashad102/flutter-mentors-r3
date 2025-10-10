@@ -28,10 +28,7 @@ class LoginRequestModel {
   LoginRequestModel({required this.email, required this.password});
 
   Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'password': password,
-    };
+    return {'email': email, 'password': password};
   }
 }
 
@@ -42,10 +39,7 @@ class VerifyEmailRequestModel {
   VerifyEmailRequestModel({required this.email, required this.otp});
 
   Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'otp': otp,
-    };
+    return {'email': email, 'otp': otp};
   }
 }
 
@@ -53,12 +47,12 @@ class RefreshTokenRequestModel {
   final String refreshToken;
   final bool useCookies;
 
-  RefreshTokenRequestModel({required this.refreshToken, this.useCookies = false});
+  RefreshTokenRequestModel({
+    required this.refreshToken,
+    this.useCookies = false,
+  });
 
   Map<String, dynamic> toJson() {
-    return {
-      'refreshToken': refreshToken,
-      'useCookies': useCookies,
-    };
+    return {'refreshToken': refreshToken, 'useCookies': useCookies};
   }
 }

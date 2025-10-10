@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laza/core/services/services_locator.dart';
-import 'package:laza/core/utils/app_colors.dart';
-import 'package:laza/core/widgets/custom_button.dart';
-import 'package:laza/features/product/presentation/cubits/product_details_cubit.dart';
+import '../../../../core/services/services_locator.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../cubits/product_details_cubit.dart';
 
 class ProductDetailsView extends StatelessWidget {
   final String id;
@@ -65,10 +65,7 @@ class ProductDetailsView extends StatelessWidget {
                           const SizedBox(height: 20),
                           Text(
                             product.description,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              height: 1.5,
-                            ),
+                            style: const TextStyle(fontSize: 16, height: 1.5),
                           ),
                           const SizedBox(height: 20),
                           Row(
@@ -100,7 +97,9 @@ class ProductDetailsView extends StatelessWidget {
                             _buildDetailRow('In Stock', 'No'),
                           if (product.discountPercentage != null)
                             _buildDetailRow(
-                                'Discount', '${product.discountPercentage}%'),
+                              'Discount',
+                              '${product.discountPercentage}%',
+                            ),
                         ],
                       ),
                     ),
@@ -113,10 +112,7 @@ class ProductDetailsView extends StatelessWidget {
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: CustomButton(
-            onPressed: () {},
-            text: 'Add to Cart',
-          ),
+          child: CustomButton(onPressed: () {}, text: 'Add to Cart'),
         ),
       ),
     );
@@ -137,10 +133,7 @@ class ProductDetailsView extends StatelessWidget {
           ),
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
         ],
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laza/core/services/services_locator.dart';
-import 'package:laza/core/widgets/custom_text_field.dart';
-import 'package:laza/features/product/presentation/cubits/home_cubit.dart';
-import 'package:laza/features/product/presentation/widgets/category_card.dart';
-import 'package:laza/features/product/presentation/widgets/product_card.dart';
+import '../../../../core/services/services_locator.dart';
+import '../../../../core/widgets/custom_text_field.dart';
+import '../cubits/home_cubit.dart';
+import '../widgets/category_card.dart';
+import '../widgets/product_card.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -86,12 +86,13 @@ class _HomeViewState extends State<HomeView> {
                       return Center(child: Text(state.message));
                     } else if (state is HomeLoaded) {
                       return GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.7,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.7,
+                              crossAxisSpacing: 15,
+                              mainAxisSpacing: 15,
+                            ),
                         itemCount: state.hasReachedMax
                             ? state.products.length
                             : state.products.length + 1,
@@ -99,7 +100,8 @@ class _HomeViewState extends State<HomeView> {
                           if (index >= state.products.length) {
                             context.read<HomeCubit>().fetchMoreProducts();
                             return const Center(
-                                child: CircularProgressIndicator());
+                              child: CircularProgressIndicator(),
+                            );
                           }
                           final product = state.products[index];
                           return ProductCard(product: product);

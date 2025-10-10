@@ -56,10 +56,11 @@ class _GenderSelectionState extends State<GenderSelection> {
           alignment: Alignment.center,
           child: Text(
             text,
-                      style: TextStyle(
-                        color: isActive
-                            ? AppColors.primaryTextLight
-                            : AppColors.secondaryText,              fontSize: 17,
+            style: TextStyle(
+              color: isActive
+                  ? AppColors.primaryTextLight
+                  : AppColors.secondaryText,
+              fontSize: 17,
               fontWeight: FontWeight.w500,
               height: 1.10,
             ),

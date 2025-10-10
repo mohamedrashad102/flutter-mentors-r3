@@ -18,11 +18,8 @@ class RegisterEmailField extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         String? emailError;
-        if (state is AuthFailure && state.failure.errorDetails != null) {
-          final errors = state.failure.errorDetails!['email'];
-          if (errors is List && errors.isNotEmpty) {
-            emailError = errors.first;
-          }
+        if (state is AuthFailure) {
+          emailError = state.failure.emailError;
         }
         return CustomTextField(
           controller: _emailController,

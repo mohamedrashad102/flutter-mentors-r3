@@ -17,11 +17,8 @@ class LoginPasswordForm extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         String? passwordError;
-        if (state is AuthFailure && state.failure.errorDetails != null) {
-          final errors = state.failure.errorDetails!['password'];
-          if (errors is List && errors.isNotEmpty) {
-            passwordError = errors.first;
-          }
+        if (state is AuthFailure) {
+          passwordError = state.failure.passwordError;
         }
         return PasswordInput(
           controller: _passwordController,

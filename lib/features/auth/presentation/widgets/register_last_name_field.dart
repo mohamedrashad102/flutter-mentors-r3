@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/helpers/validator_helper.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../cubit/auth_cubit.dart';
@@ -17,21 +18,14 @@ class RegisterLastNameField extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         String? lastNameError;
-        if (state is AuthFailure &&
-            state.failure.errorDetails != null) {
-          final errors =
-              state.failure.errorDetails!['lastName'];
-          if (errors is List && errors.isNotEmpty) {
-            lastNameError = errors.first;
-          }
+        if (state is AuthFailure) {
+          lastNameError = state.failure.lastNameError;
         }
         return CustomTextField(
           controller: _lastNameController,
           labelText: 'Last Name',
-          validator: (value) => ValidatorHelper.validateRequired(
-            value,
-            fieldName: 'Last Name',
-          ),
+          validator: (value) =>
+              ValidatorHelper.validateRequired(value, fieldName: 'Last Name'),
           errorText: lastNameError,
         );
       },

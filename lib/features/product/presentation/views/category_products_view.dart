@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laza/core/services/services_locator.dart';
-import 'package:laza/features/product/presentation/cubits/category_products_cubit.dart';
-import 'package:laza/features/product/presentation/widgets/product_card.dart';
+import '../../../../core/services/services_locator.dart';
+import '../cubits/category_products_cubit.dart';
+import '../widgets/product_card.dart';
 
 class CategoryProductsView extends StatelessWidget {
   final String categoryId;

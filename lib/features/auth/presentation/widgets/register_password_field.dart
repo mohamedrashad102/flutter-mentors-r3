@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/helpers/validator_helper.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../cubit/auth_cubit.dart';
@@ -17,13 +18,8 @@ class RegisterPasswordField extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         String? passwordError;
-        if (state is AuthFailure &&
-            state.failure.errorDetails != null) {
-          final errors =
-              state.failure.errorDetails!['password'];
-          if (errors is List && errors.isNotEmpty) {
-            passwordError = errors.first;
-          }
+        if (state is AuthFailure) {
+          passwordError = state.failure.passwordError;
         }
         return CustomTextField(
           controller: _passwordController,

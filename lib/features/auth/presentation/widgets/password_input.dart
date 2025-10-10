@@ -22,7 +22,8 @@ class PasswordInput extends StatelessWidget {
       labelText: 'Password',
       errorText: errorText,
       obscureText: true,
-      validator: isLogin ? null : ValidatorHelper.validatePassword,
+      validator: (value) =>
+          ValidatorHelper.validatePassword(value, isLogin: isLogin),
     );
   }
 }
