@@ -13,7 +13,9 @@ A modern e-commerce application for accessories, built with Flutter.
 
 ## 🎥 Demo
 
-[Demo video or screenshots will be added here]
+<video src="https://github.com/user-attachments/assets/f1aaa523-558e-43b8-bc10-5773f82fe6a7.mp4" controls width="600">
+  Your browser does not support the video tag.
+</video>
 
 ## 🚀 Getting Started
 
